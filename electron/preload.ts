@@ -2,8 +2,8 @@ import { contextBridge, ipcRenderer } from "electron";
 import fs from "fs";
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", withPrototype(ipcRenderer));
-contextBridge.exposeInMainWorld("readSettings", () => {
-  fs.writeFileSync("settings.text", "dodolan");
+contextBridge.exposeInMainWorld("readSettings", (data: string) => {
+  fs.writeFileSync("settings.text", data);
 });
 
 // `exposeInMainWorld` can't detect attributes and methods of `prototype`, manually patching it.
