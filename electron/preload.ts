@@ -1,7 +1,6 @@
-import { contextBridge, ipcRenderer } from "electron";
+import { contextBridge, dialog, ipcRenderer } from "electron";
 import fs from "fs";
 const ffmpeg = require("fluent-ffmpeg");
-
 const outputImagePath = "output";
 
 // --------- Expose some API to the Renderer process ---------
@@ -9,17 +8,21 @@ contextBridge.exposeInMainWorld("ipcRenderer", withPrototype(ipcRenderer));
 contextBridge.exposeInMainWorld("readSettings", (data: string) => {
   fs.writeFileSync("settings.text", data);
 });
+
 contextBridge.exposeInMainWorld("gasConvert", (path: string) => {
   const name: string | undefined = /\/([^/]+)\.mp4$/.exec(path)?.pop();
-  ffmpeg(path)
-    .outputOptions(["-f", "image2"])
-    .on("end", () => {
-      console.log("Video frames extracted successfully");
-    })
-    .on("error", (error: any) => {
-      console.error("Error extracting video frames:", error);
-    })
-    .save(outputImagePath + `/${name}_%05d.png`);
+
+  // console.log(dialog.showMessageBox());
+
+  // ffmpeg(path)
+  //   .outputOptions(["-f", "image2"])
+  //   .on("end", () => {
+  //     console.log("Video frames extracted successfully");
+  //   })
+  //   .on("error", (error: any) => {
+  //     console.error("Error extracting video frames:", error);
+  //   })
+  //   .save(outputImagePath + `/${name}_%05d.png`);
 });
 
 // `exposeInMainWorld` can't detect attributes and methods of `prototype`, manually patching it.
