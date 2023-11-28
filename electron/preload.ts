@@ -2,6 +2,9 @@ import { contextBridge, ipcRenderer } from "electron";
 import fs from "fs";
 // --------- Expose some API to the Renderer process ---------
 contextBridge.exposeInMainWorld("ipcRenderer", withPrototype(ipcRenderer));
+contextBridge.exposeInMainWorld("readSettings", () => {
+  fs.writeFileSync("settings.text", "dodolan");
+});
 
 // `exposeInMainWorld` can't detect attributes and methods of `prototype`, manually patching it.
 function withPrototype(obj: Record<string, any>) {
@@ -111,11 +114,6 @@ function useLoading() {
 
 const { appendLoading, removeLoading } = useLoading();
 domReady().then(appendLoading);
-
-contextBridge.exposeInMainWorld("readSettings", function () {
-  console.log(12);
-  return fs.writeFileSync("settings.json", "dodolan");
-});
 
 window.onmessage = (ev) => {
   ev.data.payload === "removeLoading" && removeLoading();
