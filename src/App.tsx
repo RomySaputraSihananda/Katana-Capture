@@ -2,7 +2,11 @@ import React from "react";
 
 class App extends React.Component {
   render = (): React.ReactNode => {
-    return <h1>Hello</h1>;
+    return (
+      <div className="h-screen bg-black text-white grid place-items-center">
+        <h1>Hello World !</h1>
+      </div>
+    );
   };
 }
 

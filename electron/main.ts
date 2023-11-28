@@ -23,7 +23,7 @@ function createWindow() {
     width: 1024,
     height: 728,
     resizable: false,
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    icon: path.join(process.env.VITE_PUBLIC, "cap.png"),
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       nodeIntegration: true,
