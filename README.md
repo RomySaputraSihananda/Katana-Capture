@@ -6,4 +6,4 @@ Desktop application that lets you extract high-quality still images from your vi
 
 ## License
 
-MIT © [Electron React Boilerplate](https://github.com/electron-react-boilerplate)
+MIT © [Electron Vite React](https://github.com/electron-vite/electron-vite-react)
