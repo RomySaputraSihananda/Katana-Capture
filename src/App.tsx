@@ -30,6 +30,9 @@ class App extends React.Component {
             accept="video/mp4,video/x-m4v,video/*"
             onChange={this.handlePreview.bind(this)}
           />
+          <button onClick={() => window.gasConvert(this.state.video)}>
+            Write !
+          </button>
         </div>
       </div>
     );

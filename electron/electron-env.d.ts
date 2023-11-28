@@ -25,4 +25,5 @@ declare namespace NodeJS {
 interface Window {
   ipcRenderer: import("electron").IpcRenderer;
   readSettings: (data: string) => Record<string, any>;
+  gasConvert: (path: string) => Record<string, any>;
 }
