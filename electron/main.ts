@@ -62,22 +62,29 @@ ipcMain.handle("gasConvert", async (e, inputDir) => {
     });
 
   if (!outputDir)
-    return dialog.showMessageBox({
-      type: "warning",
-      message: "Select the directory for the image output",
-      buttons: ["OK"],
-    });
+    return alert("warning", "Select the directory for the image output");
 
   ffmpeg(inputDir)
     .outputOptions(["-f", "image2"])
     .on("end", () => {
-      console.log("Video frames extracted successfully");
+      alert("info", "Video frames extracted successfully");
     })
     .on("error", (error: any) => {
-      console.error("Error extracting video frames:", error);
+      alert("error", "Error extracting video");
     })
     .save(path.join(outputDir, `${name}_%05d.png`));
 });
+
+const alert = (
+  type: "none" | "info" | "error" | "question" | "warning",
+  message: string
+) => {
+  dialog.showMessageBox({
+    type,
+    message,
+    buttons: ["OK"],
+  });
+};
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
