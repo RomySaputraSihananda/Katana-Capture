@@ -3,15 +3,22 @@ import Snowfall from "react-snowfall";
 
 class App extends React.Component {
   state = {
-    input: null,
     video: null,
+    sideBar: false,
   };
 
   render = (): React.ReactNode => {
+    const { video, sideBar } = this.state;
     return (
-      <div className="h-screen bg-bg bg-repeat text-white">
+      <div className="h-screen bg-bg text-white">
         <Snowfall snowflakeCount={30} />
-        <div className="h-full w-full backdrop-blur-xs  grid place-items-center relative">
+        <div
+          className={`h-full w-full grid place-items-center relative ${
+            sideBar
+              ? "transform backdrop-blur-lg"
+              : "transform backdrop-blur-xs"
+          } duration-500 ease-out`}
+        >
           <div>
             <input
               type="file"
@@ -23,13 +30,26 @@ class App extends React.Component {
             />
             {this.state.video && (
               <button
-                onClick={() =>
-                  window.ipcRenderer.invoke("gasConvert", this.state.video)
-                }
+                onClick={() => window.ipcRenderer.invoke("gasConvert", video)}
               >
                 Write !
               </button>
             )}
+          </div>
+          <button
+            className="absolute top-0 right-0"
+            onClick={() => this.setState({ sideBar: !sideBar })}
+          >
+            Test
+          </button>
+          <div
+            className={`h-full w-[30%] absolute bg-black left-0 ${
+              sideBar
+                ? "transform translate-x-0 transition"
+                : "transform -translate-x-full transition"
+            } duration-500 ease-out`}
+          >
+            test
           </div>
         </div>
       </div>
