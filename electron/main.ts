@@ -1,5 +1,9 @@
-import { app, BrowserWindow } from "electron";
+import { ipcMain, app, BrowserWindow, dialog } from "electron";
+// const {  } = require("electron");
+
 import path from "node:path";
+const ffmpeg = require("fluent-ffmpeg");
+
 // The built directory structure
 //
 // ├─┬─┬ dist
@@ -44,6 +48,36 @@ function createWindow() {
 
   win.webContents.openDevTools();
 }
+
+ipcMain.handle("gasConvert", async (e, inputDir) => {
+  const name: string | undefined = /\/([^/]+)\.mp4$/.exec(inputDir)?.pop();
+
+  const outputDir = await dialog
+    .showOpenDialog({
+      properties: ["openDirectory"],
+    })
+    .then((dir) => {
+      if (dir.canceled) return null;
+      return dir.filePaths[0];
+    });
+
+  if (!outputDir)
+    return dialog.showMessageBox({
+      type: "warning",
+      message: "Select the directory for the image output",
+      buttons: ["OK"],
+    });
+
+  ffmpeg(inputDir)
+    .outputOptions(["-f", "image2"])
+    .on("end", () => {
+      console.log("Video frames extracted successfully");
+    })
+    .on("error", (error: any) => {
+      console.error("Error extracting video frames:", error);
+    })
+    .save(path.join(outputDir, `${name}_%05d.png`));
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

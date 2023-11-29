@@ -1,13 +1,8 @@
 import React from "react";
-
 class App extends React.Component {
   state = {
-    input: "",
-    video: "",
-  };
-
-  handlePreview = (e: any) => {
-    this.setState({ video: e.target.files[0].path });
+    input: null,
+    video: null,
   };
 
   render = (): React.ReactNode => {
@@ -21,20 +16,28 @@ class App extends React.Component {
             className="bg-white text-black"
             onChange={(e) => this.setState({ input: e.target.value })}
           />
-          <button onClick={() => window.readSettings(this.state.input)}>
-            Write !
-          </button>
+          {/* <button onClick={() => window.readSettings(this.state.input)}>
+            Meee
+          </button> */}
         </div>
         <div>
           <input
             type="file"
             name="video"
             accept="video/mp4,video/x-m4v,video/*"
-            onChange={this.handlePreview.bind(this)}
+            onChange={(e: any | null) =>
+              this.setState({ video: e.target.files[0].path })
+            }
           />
-          <button onClick={() => window.gasConvert(this.state.video)}>
-            Write !
-          </button>
+          {this.state.video && (
+            <button
+              onClick={() =>
+                window.ipcRenderer.invoke("gasConvert", this.state.video)
+              }
+            >
+              Write !
+            </button>
+          )}
         </div>
       </div>
     );
