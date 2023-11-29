@@ -4,6 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors: { black: "#252525", white: "#EEECEF" },
+      backgroundImage: {
+        bg: "url('/image.png')",
+      },
+      backdropBlur: {
+        xs: "2px",
+      },
     },
   },
   plugins: [],

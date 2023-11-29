@@ -9,27 +9,28 @@ class App extends React.Component {
 
   render = (): React.ReactNode => {
     return (
-      <div className="h-screen bg-black text-white grid place-items-center relative">
-        <Snowfall />
-        <div className="bg-[#0CF167] h-[20%] w-screen absolute top-0 rounded-b-full"></div>
-        <div>
-          <input
-            type="file"
-            name="video"
-            accept="video/mp4,video/x-m4v,video/*"
-            onChange={(e: any | null) =>
-              this.setState({ video: e.target.files[0].path })
-            }
-          />
-          {this.state.video && (
-            <button
-              onClick={() =>
-                window.ipcRenderer.invoke("gasConvert", this.state.video)
+      <div className="h-screen bg-bg bg-repeat text-white">
+        <Snowfall snowflakeCount={30} />
+        <div className="h-full w-full backdrop-blur-xs  grid place-items-center relative">
+          <div>
+            <input
+              type="file"
+              name="video"
+              accept="video/*"
+              onChange={(e: any | null) =>
+                this.setState({ video: e.target.files[0].path })
               }
-            >
-              Write !
-            </button>
-          )}
+            />
+            {this.state.video && (
+              <button
+                onClick={() =>
+                  window.ipcRenderer.invoke("gasConvert", this.state.video)
+                }
+              >
+                Write !
+              </button>
+            )}
+          </div>
         </div>
       </div>
     );
