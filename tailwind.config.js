@@ -10,6 +10,9 @@ module.exports = {
       backdropBlur: {
         xs: "2px",
       },
+      brightness: {
+        80: ".8",
+      },
     },
   },
   plugins: [],
