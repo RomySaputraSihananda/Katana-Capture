@@ -53,7 +53,7 @@ class App extends React.Component {
           </div>
         </div>
         <BurgerSvg
-          className="absolute top-0 right-0 fill-white"
+          className="absolute top-0 right-0 fill-white cursor-pointer"
           onClick={() => this.setState({ show: !show })}
         />
       </div>

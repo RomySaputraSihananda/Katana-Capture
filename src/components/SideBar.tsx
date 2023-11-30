@@ -3,15 +3,28 @@ import CloseButton from "./CloseButton";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
-  { show: boolean; hover: boolean }
+  { show: boolean; hover: boolean; profile: any | null }
 > {
   constructor(props: { show: boolean; handle: Function }) {
     super(props);
     this.state = {
       show: props.show,
       hover: false,
+      profile: null,
     };
   }
+
+  componentDidMount = (): void => {
+    (async () => {
+      const req = await fetch(
+        "https://api.github.com/users/RomySaputraSihananda"
+      );
+
+      const res = await req.json();
+
+      this.setState({ profile: res });
+    })();
+  };
 
   componentDidUpdate = (props: { show: boolean }): void => {
     if (props.show !== this.props.show)
@@ -23,7 +36,7 @@ class SideBar extends React.Component<
   };
 
   render = (): React.ReactNode => {
-    const { show, hover } = this.state;
+    const { show, hover, profile } = this.state;
 
     return (
       <div
@@ -40,6 +53,7 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
+          {profile && <img src={profile.avatar_url} />}
           <CloseButton toogle={this.toogle} hover={hover} />
         </div>
       </div>
