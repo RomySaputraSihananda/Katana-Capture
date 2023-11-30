@@ -1,5 +1,5 @@
 import React from "react";
-import { Katana } from "./Svg";
+import CloseButton from "./CloseButton";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
@@ -23,7 +23,7 @@ class SideBar extends React.Component<
   };
 
   render = (): React.ReactNode => {
-    const { show } = this.state;
+    const { show, hover } = this.state;
 
     return (
       <div
@@ -40,16 +40,7 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div
-            className="absolute top-0 right-0 cursor-pointer p-1 rounded-full m-2 bg-black/70 hover:bg-white/70 transition duration-500 ease-out"
-            onClick={this.toogle}
-            onMouseEnter={() => this.setState({ hover: true })}
-            onMouseLeave={() => this.setState({ hover: false })}
-          >
-            <Katana
-              className={this.state.hover ? "fill-black" : "fill-white"}
-            />
-          </div>
+          <CloseButton toogle={this.toogle} hover={hover} />
         </div>
       </div>
     );

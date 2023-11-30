@@ -1,6 +1,7 @@
 import React from "react";
 import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
+import { BurgerSvg } from "./components/Svg";
 
 class App extends React.Component {
   state = {
@@ -51,12 +52,10 @@ class App extends React.Component {
             )}
           </div>
         </div>
-        <button
-          className="absolute top-0 right-0"
+        <BurgerSvg
+          className="absolute top-0 right-0 fill-white"
           onClick={() => this.setState({ show: !show })}
-        >
-          Test
-        </button>
+        />
       </div>
     );
   };
