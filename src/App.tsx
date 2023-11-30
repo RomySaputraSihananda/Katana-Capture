@@ -5,15 +5,18 @@ import SideBar from "./components/SideBar";
 class App extends React.Component {
   state = {
     video: null,
-    sideBar: false,
+    show: false,
   };
 
   render = (): React.ReactNode => {
-    const { video, sideBar } = this.state;
+    const { video, show } = this.state;
     return (
       <div className="h-screen bg-bg text-white filter brightness-80 relative">
         <Snowfall snowflakeCount={30} />
-        <SideBar show={sideBar} />
+        <SideBar
+          show={show}
+          handle={(show: boolean) => this.setState({ show })}
+        />
         <div className={`h-full w-full grid place-items-center`}>
           <div>
             <input
@@ -35,7 +38,7 @@ class App extends React.Component {
         </div>
         <button
           className="absolute top-0 right-0"
-          onClick={() => this.setState({ sideBar: !sideBar })}
+          onClick={() => this.setState({ show: !show })}
         >
           Test
         </button>
