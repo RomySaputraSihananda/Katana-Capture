@@ -1,4 +1,5 @@
 import React from "react";
+import { Katana } from "./Svg";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
@@ -38,9 +39,9 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          <button className="absolute top-0 right-0" onClick={this.toogle}>
-            X
-          </button>
+          <div className="absolute top-0 right-0" onClick={this.toogle}>
+            <Katana />
+          </div>
         </div>
       </div>
     );
