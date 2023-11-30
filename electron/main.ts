@@ -49,8 +49,8 @@ function createWindow() {
   win.webContents.openDevTools();
 }
 
-ipcMain.handle("gasConvert", async (e, inputDir) => {
-  const name: string | undefined = /\/([^/]+)\.mp4$/.exec(inputDir)?.pop();
+ipcMain.handle("gasConvert", async (e, field) => {
+  const name: string | undefined = /\/([^/]+)\.mp4$/.exec(field.video)?.pop();
 
   const outputDir = await dialog
     .showOpenDialog({
@@ -64,7 +64,8 @@ ipcMain.handle("gasConvert", async (e, inputDir) => {
   if (!outputDir)
     return alert("warning", "Select the directory for the image output");
 
-  ffmpeg(inputDir)
+  ffmpeg(field.video)
+    .videoFilters(`fps=${field.option}`)
     .outputOptions(["-f", "image2"])
     .on("end", () => {
       alert("info", "Video frames extracted successfully");

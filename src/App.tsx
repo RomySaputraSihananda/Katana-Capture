@@ -4,12 +4,15 @@ import SideBar from "./components/SideBar";
 
 class App extends React.Component {
   state = {
-    video: null,
+    field: {
+      video: null,
+      option: 30,
+    },
     show: false,
   };
 
   render = (): React.ReactNode => {
-    const { video, show } = this.state;
+    const { field, show } = this.state;
     return (
       <div className="h-screen bg-bg text-white filter brightness-80 relative">
         <Snowfall snowflakeCount={30} />
@@ -19,17 +22,29 @@ class App extends React.Component {
         />
         <div className={`h-full w-full grid place-items-center`}>
           <div>
+            <select
+              defaultValue={30}
+              onChange={() => (e: any | null) =>
+                this.setState({ field: { ...field, option: e.target.value } })}
+              className="text-black"
+            >
+              <option value={15}>15</option>
+              <option value={30}>30</option>
+              <option value={60}>60</option>
+            </select>
             <input
               type="file"
               name="video"
               accept="video/*"
               onChange={(e: any | null) =>
-                this.setState({ video: e.target.files[0].path })
+                this.setState({
+                  field: { ...field, video: e.target.files[0].path },
+                })
               }
             />
-            {this.state.video && (
+            {field.video && (
               <button
-                onClick={() => window.ipcRenderer.invoke("gasConvert", video)}
+                onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
               >
                 Write !
               </button>
