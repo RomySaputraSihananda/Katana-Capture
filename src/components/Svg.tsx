@@ -1,20 +1,17 @@
 import React from "react";
 
-const Katana = (): React.ReactNode => {
+const Katana = (props: React.SVGProps<SVGSVGElement>): React.ReactNode => {
   return (
     <svg
       version="1.0"
       xmlns="http://www.w3.org/2000/svg"
-      width="70"
-      height="70"
+      width="40"
+      height="40"
       viewBox="0 0 794 794"
       preserveAspectRatio="xMidYMid meet"
+      {...props}
     >
-      <g
-        transform="translate(0.000000,794.000000) scale(0.100000,-0.100000)"
-        fill="#000000"
-        stroke="none"
-      >
+      <g transform="translate(0.000000,794.000000) scale(0.100000,-0.100000)">
         <path
           d="M1581 6728 c-48 -149 -23 -306 66 -417 210 -259 916 -1053 1352
 -1521 569 -609 1492 -1535 1947 -1953 l31 -28 82 81 c44 46 81 86 81 90 0 8

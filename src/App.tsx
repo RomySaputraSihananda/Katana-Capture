@@ -17,6 +17,9 @@ class App extends React.Component {
           show={show}
           handle={(show: boolean) => this.setState({ show })}
         />
+        <a href="http://github.com/romysaputrasihananda" target="blank">
+          Click dong
+        </a>
         <div className={`h-full w-full grid place-items-center`}>
           <div>
             <input

@@ -3,12 +3,13 @@ import { Katana } from "./Svg";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
-  { show: boolean }
+  { show: boolean; hover: boolean }
 > {
   constructor(props: { show: boolean; handle: Function }) {
     super(props);
     this.state = {
       show: props.show,
+      hover: false,
     };
   }
 
@@ -39,8 +40,15 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="absolute top-0 right-0" onClick={this.toogle}>
-            <Katana />
+          <div
+            className="absolute top-0 right-0 cursor-pointer p-1 rounded-full m-2 bg-black/70 hover:bg-white/70 transition duration-500 ease-out"
+            onClick={this.toogle}
+            onMouseEnter={() => this.setState({ hover: true })}
+            onMouseLeave={() => this.setState({ hover: false })}
+          >
+            <Katana
+              className={this.state.hover ? "fill-black" : "fill-white"}
+            />
           </div>
         </div>
       </div>
