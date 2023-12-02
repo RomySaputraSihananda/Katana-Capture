@@ -53,7 +53,7 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          {profile && <img src={profile.avatar_url} />}
+          {profile && <img className="rounded-full" src={profile.avatar_url} />}
           <CloseButton toogle={this.toogle} hover={hover} />
         </div>
       </div>

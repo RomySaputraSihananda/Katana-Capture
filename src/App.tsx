@@ -1,7 +1,7 @@
 import React from "react";
 import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
-import { BurgerSvg } from "./components/Svg";
+import BurgerButton from "./components/BurgerButton";
 
 class App extends React.Component {
   state = {
@@ -18,6 +18,10 @@ class App extends React.Component {
       <div className="h-screen bg-bg text-white filter brightness-80 relative">
         <Snowfall snowflakeCount={30} />
         <SideBar
+          show={show}
+          handle={(show: boolean) => this.setState({ show })}
+        />
+        <BurgerButton
           show={show}
           handle={(show: boolean) => this.setState({ show })}
         />
@@ -52,10 +56,6 @@ class App extends React.Component {
             )}
           </div>
         </div>
-        <BurgerSvg
-          className="absolute top-0 right-0 fill-white cursor-pointer"
-          onClick={() => this.setState({ show: !show })}
-        />
       </div>
     );
   };
