@@ -4,7 +4,6 @@ import { ipcMain, app, BrowserWindow, dialog } from "electron";
 import path from "node:path";
 const ffmpeg = require("fluent-ffmpeg");
 import os from "os";
-
 // The built directory structure
 //
 // ├─┬─┬ dist
@@ -89,7 +88,7 @@ const alert = (
 };
 
 ipcMain.handle("getOs", async (e) => {
-  return os.freemem();
+  return os.userInfo();
 });
 
 ipcMain.handle("getCpu", async (e) => {

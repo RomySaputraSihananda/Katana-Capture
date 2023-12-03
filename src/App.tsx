@@ -12,6 +12,8 @@ class App extends React.Component {
     show: false,
   };
 
+  componentDidMount(): void {}
+
   render = (): React.ReactNode => {
     const { field, show } = this.state;
     return (
@@ -49,7 +51,8 @@ class App extends React.Component {
             />
             {field.video && (
               <button
-                onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
+                // onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
+                onClick={() => window.ipcRenderer.invoke("quetion-profile")}
               >
                 Write !
               </button>
