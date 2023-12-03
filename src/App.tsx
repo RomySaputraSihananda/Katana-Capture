@@ -2,6 +2,7 @@ import React from "react";
 import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
 import BurgerButton from "./components/BurgerButton";
+import Navbar from "./components/Navbar";
 
 class App extends React.Component {
   state = {
@@ -27,6 +28,7 @@ class App extends React.Component {
         />
         <div className={`h-full w-full grid place-items-center`}>
           <div>
+            <Navbar />
             <select
               defaultValue={30}
               onChange={() => (e: any | null) =>

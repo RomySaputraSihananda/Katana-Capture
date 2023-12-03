@@ -1,20 +1,30 @@
 import React from "react";
 
-class Navbar extends React.Component {
+class Navbar extends React.Component<{}, { data: any | null }> {
   state = {
-    os: "",
+    data: null,
   };
   componentDidMount = (): void => {
     (async () => {
-      this.setState({ os: await window.ipcRenderer.invoke("getOs") });
+      this.setState({ data: await window.ipcRenderer.invoke("getOs") });
     })();
   };
 
   render(): React.ReactNode {
+    const { data } = this.state;
+    console.log(data);
     return (
-      <nav>
-        <h1>{this.state.os}</h1>
-      </nav>
+      <>
+        {data && (
+          <nav className="p-4">
+            <h1>
+              {data["userInfo"]["username"]}@{data["hostname"]}-
+              {data["netInterface"]["wlo1"][0]["address"]}:
+              {data["netInterface"]["wlo1"][0]["mac"]}
+            </h1>
+          </nav>
+        )}
+      </>
     );
   }
 }

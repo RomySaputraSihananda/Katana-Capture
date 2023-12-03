@@ -88,10 +88,14 @@ const alert = (
 };
 
 ipcMain.handle("getOs", async () => {
-  return os.userInfo();
+  return {
+    userInfo: os.userInfo(),
+    hostname: os.hostname(),
+    netInterface: os.networkInterfaces(),
+  };
 });
 
-ipcMain.handle("getCpu", async () => {
+ipcMain.handle("getCpus", async () => {
   return os.cpus();
 });
 
