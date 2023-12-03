@@ -40,7 +40,7 @@ class SideBar extends React.Component<
 
     return (
       <div
-        className={`h-full w-full absolute left-0 flex ${
+        className={`h-full w-full absolute left-0 flex z-10 ${
           show ? "transform visible backdrop-blur-sm" : "transform invisible"
         } duration-500 ease-linear`}
         onClick={this.toogle}
