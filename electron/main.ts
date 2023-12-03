@@ -96,7 +96,7 @@ ipcMain.handle("getOs", async () => {
 });
 
 ipcMain.handle("getCpus", async () => {
-  return os.cpus();
+  return ((os.totalmem() - os.freemem()) / os.totalmem()) * 100;
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
