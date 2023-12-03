@@ -13,12 +13,6 @@ class SideBar extends React.Component<
     };
   }
 
-  componentDidMount = (): void => {
-    (async () => {
-      console.log(await window.ipcRenderer.invoke("getOs"));
-    })();
-  };
-
   componentDidUpdate = (props: { show: boolean }): void => {
     if (props.show !== this.props.show)
       this.setState({ show: this.props.show });

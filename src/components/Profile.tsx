@@ -22,7 +22,6 @@ class Profile extends React.Component<
   };
 
   fetchData = async () => {
-    console.log(this.state.username);
     this.setState({ loading: true });
 
     const req = await fetch(
@@ -45,8 +44,7 @@ class Profile extends React.Component<
     prevProps: Readonly<{}>,
     prevState: Readonly<{
       username: string;
-    }>,
-    snapshot?: any
+    }>
   ): void {
     if (prevState.username !== this.state.username) this.fetchData();
   }

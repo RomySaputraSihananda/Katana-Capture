@@ -70,7 +70,7 @@ ipcMain.handle("gasConvert", async (e, field) => {
     .on("end", () => {
       alert("info", "Video frames extracted successfully");
     })
-    .on("error", (error: any) => {
+    .on("error", () => {
       alert("error", "Error extracting video");
     })
     .save(path.join(outputDir, `${name}_%05d.png`));
@@ -87,11 +87,11 @@ const alert = (
   });
 };
 
-ipcMain.handle("getOs", async (e) => {
+ipcMain.handle("getOs", async () => {
   return os.userInfo();
 });
 
-ipcMain.handle("getCpu", async (e) => {
+ipcMain.handle("getCpu", async () => {
   return os.cpus();
 });
 
