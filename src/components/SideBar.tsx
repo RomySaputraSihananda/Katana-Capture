@@ -4,27 +4,18 @@ import Profile from "./Profile";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
-  { show: boolean; hover: boolean; profile: any | null }
+  { show: boolean }
 > {
   constructor(props: { show: boolean; handle: Function }) {
     super(props);
     this.state = {
       show: props.show,
-      hover: false,
-      profile: null,
     };
   }
 
   componentDidMount = (): void => {
     (async () => {
-      const req = await fetch(
-        "https://api.github.com/users/RomySaputraSihananda"
-      );
-
-      const res = await req.json();
       console.log(await window.ipcRenderer.invoke("getOs"));
-
-      this.setState({ profile: res });
     })();
   };
 
@@ -38,7 +29,7 @@ class SideBar extends React.Component<
   };
 
   render = (): React.ReactNode => {
-    const { show, hover, profile } = this.state;
+    const { show } = this.state;
 
     return (
       <div
@@ -55,8 +46,8 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          {profile && <Profile data={profile} />}
-          <CloseButton toogle={this.toogle} hover={hover} />
+          <Profile />
+          <CloseButton toogle={this.toogle} />
         </div>
       </div>
     );

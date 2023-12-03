@@ -2,13 +2,13 @@ import React from "react";
 import { KatanaSvg } from "./Svg";
 
 class CloseButton extends React.Component<
-  { hover: boolean; toogle: Function },
+  { toogle: Function },
   { hover: boolean }
 > {
-  constructor(props: { hover: boolean; toogle: Function }) {
+  constructor(props: { toogle: Function }) {
     super(props);
     this.state = {
-      hover: props.hover,
+      hover: false,
     };
   }
 

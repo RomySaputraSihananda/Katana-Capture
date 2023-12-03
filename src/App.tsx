@@ -12,8 +12,6 @@ class App extends React.Component {
     show: false,
   };
 
-  componentDidMount(): void {}
-
   render = (): React.ReactNode => {
     const { field, show } = this.state;
     return (
