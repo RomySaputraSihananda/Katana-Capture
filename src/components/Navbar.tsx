@@ -1,5 +1,4 @@
 import React from "react";
-import Cpus from "./Cpus";
 
 class Navbar extends React.Component<{}, { data: any | null }> {
   state = {
@@ -23,7 +22,6 @@ class Navbar extends React.Component<{}, { data: any | null }> {
               {data["netInterface"]["wlo1"][0]["address"]}:
               {data["netInterface"]["wlo1"][0]["mac"]}
             </h1>
-            <Cpus />
           </nav>
         )}
       </>

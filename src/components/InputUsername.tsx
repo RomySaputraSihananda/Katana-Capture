@@ -18,12 +18,13 @@ class InputUsername extends React.Component<
       <div
         className={`w-screen h-screen absolute bg-black/80 grid place-items-center z-10`}
       >
-        <div>
-          <h1>Input Your Github Username</h1>
+        <div className="flex flex-col justify-center">
+          <h1 className="block w-[300px] h-[300px]">LOGO GIT</h1>
+          <h1 className="p-4 text-3xl">Input Your Github Username</h1>
           <input
             type="text"
             name=""
-            className="bg-black text-white"
+            className="backdrop-blur-sm text-xl text-center px-3 bg-white/10 rounded-lg text-white focus:outline-none h-10"
             onChange={(e) => this.setState({ username: e.target.value })}
             onKeyDown={(e) => e.key === "Enter" && this.props.handle(username)}
           />

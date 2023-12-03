@@ -95,9 +95,10 @@ ipcMain.handle("getOs", async () => {
   };
 });
 
-ipcMain.handle("getCpus", async () => {
-  return ((os.totalmem() - os.freemem()) / os.totalmem()) * 100;
-});
+// ipcMain.handle("getCpus", async (): Promise<number> => {
+//   await new Promise((res) => setTimeout(res, 1000));
+//   return ((os.totalmem() - os.freemem()) / os.totalmem()) * 100;
+// });
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

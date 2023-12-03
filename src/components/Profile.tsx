@@ -18,7 +18,7 @@ class Profile extends React.Component<
     username: "romysaputrasihananda",
     field: "",
     loading: false,
-    input: false,
+    input: true,
   };
 
   fetchData = async () => {
@@ -65,8 +65,11 @@ class Profile extends React.Component<
         {profile && (
           <div className="flex flex-col items-center w-full">
             <h1 className="text-3xl p-5">My Profile</h1>
-            <img src={profile["avatar_url"]} className="rounded-full w-[50%]" />
-            <div className="flex items-center">
+            <img
+              src={profile["avatar_url"]}
+              className="rounded-full w-[50%] border border-white/20"
+            />
+            <div className="flex items-center pt-4">
               <p className="text-xl">
                 {profile["login"]} {profile["name"] && `(${profile["name"]})`}
               </p>
