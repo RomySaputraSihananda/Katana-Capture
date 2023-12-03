@@ -1,5 +1,6 @@
 import React from "react";
 import CloseButton from "./CloseButton";
+import Profile from "./Profile";
 
 class SideBar extends React.Component<
   { show: boolean; handle: Function },
@@ -21,6 +22,7 @@ class SideBar extends React.Component<
       );
 
       const res = await req.json();
+      console.log(await window.ipcRenderer.invoke("getOs"));
 
       this.setState({ profile: res });
     })();
@@ -53,7 +55,7 @@ class SideBar extends React.Component<
           } duration-500 ease-out`}
           onClick={(e) => e.stopPropagation()}
         >
-          {profile && <img className="rounded-full" src={profile.avatar_url} />}
+          {profile && <Profile data={profile} />}
           <CloseButton toogle={this.toogle} hover={hover} />
         </div>
       </div>

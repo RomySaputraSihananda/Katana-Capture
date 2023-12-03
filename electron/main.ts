@@ -3,6 +3,7 @@ import { ipcMain, app, BrowserWindow, dialog } from "electron";
 
 import path from "node:path";
 const ffmpeg = require("fluent-ffmpeg");
+import os from "os";
 
 // The built directory structure
 //
@@ -86,6 +87,14 @@ const alert = (
     buttons: ["OK"],
   });
 };
+
+ipcMain.handle("getOs", async (e) => {
+  return os.freemem();
+});
+
+ipcMain.handle("getCpu", async (e) => {
+  return os.cpus();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
