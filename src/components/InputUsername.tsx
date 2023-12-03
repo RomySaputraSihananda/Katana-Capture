@@ -1,5 +1,6 @@
 import React from "react";
 import CloseButton from "./CloseButton";
+import { GithubSvg } from "./Svg";
 
 class InputUsername extends React.Component<
   { handle: Function; input: Function },
@@ -19,7 +20,7 @@ class InputUsername extends React.Component<
         className={`w-screen h-screen absolute bg-black/80 grid place-items-center z-10`}
       >
         <div className="flex flex-col justify-center">
-          <h1 className="block w-[300px] h-[300px]">LOGO GIT</h1>
+          <GithubSvg className="h-[300px] w-[300px] m-auto" />
           <h1 className="p-4 text-3xl">Input Your Github Username</h1>
           <input
             type="text"

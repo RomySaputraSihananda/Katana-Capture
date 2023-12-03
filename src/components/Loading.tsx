@@ -6,7 +6,7 @@ class Loading extends React.Component {
     return (
       <div className="w-screen h-screen absolute bg-black/50 grid place-items-center">
         <div className="w-full text-center">
-          <p className="text-5xl">Loading...</p>
+          <p className="text-5xl">Please Wait...</p>
           <img src={loading} className="m-auto" />
         </div>
       </div>
