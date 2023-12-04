@@ -1,7 +1,6 @@
 import React from "react";
 import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
-import BurgerButton from "./components/BurgerButton";
 import Navbar from "./components/Navbar";
 
 class App extends React.Component {
@@ -17,18 +16,17 @@ class App extends React.Component {
     const { field, show } = this.state;
     return (
       <div className="h-screen bg-bg text-white filter brightness-80 relative">
+        <Navbar
+          show={show}
+          handle={(show: boolean) => this.setState({ show })}
+        />
         <Snowfall snowflakeCount={30} />
         <SideBar
           show={show}
           handle={(show: boolean) => this.setState({ show })}
         />
-        <BurgerButton
-          show={show}
-          handle={(show: boolean) => this.setState({ show })}
-        />
         <div className={`h-full w-full grid place-items-center`}>
           <div>
-            <Navbar />
             <select
               defaultValue={30}
               onChange={() => (e: any | null) =>

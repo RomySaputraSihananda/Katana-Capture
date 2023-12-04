@@ -18,7 +18,7 @@ class Profile extends React.Component<
     username: "romysaputrasihananda",
     field: "",
     loading: false,
-    input: true,
+    input: false,
   };
 
   fetchData = async () => {

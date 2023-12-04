@@ -27,7 +27,7 @@ class BurgerButton extends React.Component<
     return (
       <div
         onClick={this.toogle}
-        className={`cursor-pointer p-1 rounded-md m-2 bg-black/70 hover:bg-white/70 transition absolute left-0 top-0 ${
+        className={`cursor-pointer p-1 rounded-md m-2 bg-black/70 hover:bg-white/70 transition ${
           !show ? "transform visible" : "transform invisible"
         } ease-linear duration-300`}
         onMouseEnter={() => this.setState({ hover: true })}
