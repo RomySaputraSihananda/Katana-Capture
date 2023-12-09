@@ -63,7 +63,7 @@ class Profile extends React.Component<
           />
         )}
         {profile && (
-          <div className="flex flex-col items-center w-full">
+          <div className="flex flex-col items-center w-full h-full relative">
             <h1 className="text-3xl p-5">My Profile</h1>
             <img
               src={profile["avatar_url"]}
@@ -94,6 +94,19 @@ class Profile extends React.Component<
                 <h1>Repositories</h1>
                 <p>{profile["public_repos"]}</p>
               </div>
+            </div>
+            <div className="absolute bottom-0 py-3">
+              <p className="text-sm">
+                Copyright © 2023{" "}
+                <a
+                  className="hover:text-blue-500 duration-300 transition"
+                  href="https://github.com/romysaputrasihananda"
+                  target="blank"
+                >
+                  Romyyy
+                </a>
+                . All Rights Reserved
+              </p>
             </div>
           </div>
         )}

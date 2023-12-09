@@ -6,3 +6,15 @@
   font-family: "LeagueSpartan-Bold";
   src: url("./fonts/LeagueSpartan-Bold.otf");
 }
+@font-face {
+  font-family: "Fira";
+  src: url("./fonts/FiraCode.otf");
+}
+@font-face {
+  font-family: "Salt";
+  src: url("./fonts/Salt.otf");
+}
+@font-face {
+  font-family: "Quote";
+  src: url("./fonts/Quote.otf");
+}

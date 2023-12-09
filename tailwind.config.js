@@ -15,6 +15,9 @@ module.exports = {
       },
       fontFamily: {
         Spartan: "LeagueSpartan-Bold",
+        Fira: "Fira",
+        Salt: "Salt",
+        Quote: "Quote",
       },
     },
   },
