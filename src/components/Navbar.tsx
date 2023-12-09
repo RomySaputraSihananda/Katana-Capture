@@ -36,7 +36,7 @@ class Navbar extends React.Component<
         {data && (
           <nav className="absolute top-0 flex items-center backdrop-blur-xs bg-black/40 w-full">
             <BurgerButton show={show} handle={this.toogle} />
-            <h1 className="text-2xl">
+            <h1 className="text-2xl font-Spartan">
               Hello,{data["userInfo"]["username"]}@{data["hostname"]}👋
             </h1>
             <h1>ip:{data["netInterface"]["wlo1"][0]["address"]}</h1>

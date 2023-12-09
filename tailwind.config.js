@@ -13,6 +13,9 @@ module.exports = {
       brightness: {
         80: ".8",
       },
+      fontFamily: {
+        Spartan: "LeagueSpartan-Bold",
+      },
     },
   },
   plugins: [],
