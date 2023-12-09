@@ -15,7 +15,8 @@ class Profile extends React.Component<
 > {
   state = {
     profile: null,
-    username: "romysaputrasihananda",
+    username: "muhfalihr",
+    // username: "romysaputrasihananda",
     field: "",
     loading: false,
     input: false,
@@ -63,15 +64,18 @@ class Profile extends React.Component<
           />
         )}
         {profile && (
-          <div className="flex flex-col items-center w-full h-full relative">
-            <h1 className="text-3xl p-5">My Profile</h1>
+          <div className="flex flex-col font-Quote items-center w-full h-full relative">
+            <h1 className="text-3xl py-2 tracking-widest">My Profile</h1>
             <img
               src={profile["avatar_url"]}
-              className="rounded-full w-[50%] border border-white/20"
+              className="rounded-full w-[50%] opacity-80 border border-white/80"
             />
             <div className="flex items-center pt-4">
-              <p className="text-xl">
-                {profile["login"]} {profile["name"] && `(${profile["name"]})`}
+              <p className="text-xl tracking-wide">
+                {profile["login"]}{" "}
+                {profile["name"] && (
+                  <span className="text-white/60">{`(${profile["name"]})`}</span>
+                )}
               </p>
               <div
                 className="px-3 cursor-pointer"
@@ -80,8 +84,10 @@ class Profile extends React.Component<
                 <EditSvg />
               </div>
             </div>
-            <p>{profile["bio"]}</p>
-            <div className="grid grid-cols-3 w-full place-items-center p-2">
+            <p className="text-lg  font-light text-white/90">
+              {profile["bio"]}
+            </p>
+            <div className="grid grid-cols-3 w-full place-items-center p-2 text-xl">
               <div className="flex flex-col items-center">
                 <h1>Following</h1>
                 <p>{profile["following"]}</p>
@@ -95,8 +101,22 @@ class Profile extends React.Component<
                 <p>{profile["public_repos"]}</p>
               </div>
             </div>
-            <div className="absolute bottom-0 py-3">
-              <p className="text-sm">
+            <div className="flex-1 px-4 flex flex-col justify-center items-center">
+              <div>
+                <img
+                  className="w-[70%] opacity-80 mb-2"
+                  src={`https://github-readme-stats.vercel.app/api?username=${profile["login"]}&show_icons=true&theme=dark`}
+                  alt={profile["login"]}
+                />
+                <img
+                  className="w-[70%] float-right opacity-80"
+                  src={`https://github-readme-stats.vercel.app/api/top-langs/?username=${profile["login"]}&layout=compact&theme=dark&hide=angular,blade,css,html,sass,scss,smarty,ts`}
+                  alt={profile["login"]}
+                />
+              </div>
+            </div>
+            <div className="py-1">
+              <p className="text-lg">
                 Copyright © 2023{" "}
                 <a
                   className="hover:text-blue-500 duration-300 transition"
