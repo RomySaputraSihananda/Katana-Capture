@@ -24,6 +24,7 @@ class App extends React.Component<
 
   render = (): React.ReactNode => {
     const { field, show } = this.state;
+
     return (
       <div className="bg-black/20 h-screen bg-bg text-white filter brightness-80 relative">
         <Navbar
@@ -42,7 +43,18 @@ class App extends React.Component<
                 htmlFor="file-input"
                 className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer"
               >
-                <div className="flex flex-col items-center w-full h-full justify-center pt-5 pb-6">
+                <div
+                  onDrop={(e: any | null) => {
+                    e.preventDefault();
+                    this.setState({
+                      field: { ...field, video: e.dataTransfer.files[0].path },
+                    });
+                  }}
+                  onDragOver={(e: any | null) => {
+                    e.preventDefault();
+                  }}
+                  className="flex flex-col items-center w-full h-full justify-center pt-5 pb-6"
+                >
                   {field.video ? (
                     <p className="mb-3 text-4xl tracking-widest">
                       {field.video.split("/").pop()}
@@ -51,7 +63,7 @@ class App extends React.Component<
                     <>
                       <UploadSvg className="w-[50px] fill-none m-5" />
                       <p className="mb-3 text-4xl tracking-widest">
-                        Click to upload
+                        Click or Drop to upload
                       </p>
                       <p className="text-lg tracking-widest">
                         AVI, MP4, MPG, WEBM, MKV, GIFV, WMV
@@ -118,7 +130,7 @@ class App extends React.Component<
                 disabled={field.video ? false : true}
                 onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
               >
-                Write !
+                Convert !
               </button>
             </div>
           </div>
