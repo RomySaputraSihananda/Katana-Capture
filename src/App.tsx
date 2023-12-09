@@ -74,13 +74,13 @@ class App extends React.Component<
               </label>
             </div>
 
-            <div className="flex w-full">
+            <div className="flex w-full border-t border-white/20 rounded-t-lg">
               <select
                 onChange={() => (e: any | null) =>
                   this.setState({
                     field: { ...field, option: e.target.value },
                   })}
-                className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
+                className="block bg-transparent appearance-none px-3 py-6 text-xl rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
               >
                 <option selected disabled>
                   Frame Per Second
@@ -93,7 +93,7 @@ class App extends React.Component<
                   );
                 })}
               </select>
-              <select className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
+              <select className="px-3 py-6 rounded-lg text-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
                 <option selected disabled>
                   Quality Image
                 </option>
@@ -104,21 +104,17 @@ class App extends React.Component<
                     </option>
                   );
                 })}
-              </select>{" "}
-              <select className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
+              </select>
+              <select
+                disabled
+                className="px-3 py-6 rounded-lg text-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
+              >
                 <option selected disabled>
-                  Frame Per Second
+                  Next Feature ?
                 </option>
-                {[15, 30, 60, 120].map((e) => {
-                  return (
-                    <option value={e} key={e}>
-                      {e} fps
-                    </option>
-                  );
-                })}
               </select>
               <button
-                className="disabled:hover:bg-red-300/50 hover:bg-sky-400/50 flex-1 text-2xl tracking-widest transition duration-300"
+                className="disabled:hover:bg-red-600/10 hover:bg-sky-600/10 rounded-lg flex-1 text-2xl tracking-widest transition duration-300"
                 disabled={field.video ? false : true}
                 onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
               >
