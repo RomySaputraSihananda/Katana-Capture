@@ -34,7 +34,7 @@ class Navbar extends React.Component<
     return (
       <>
         {data && (
-          <nav className="absolute top-0 flex items-center justify-between backdrop-blur-xs bg-black/40 w-full">
+          <nav className="absolute top-0 flex items-center justify-between backdrop-blur-xs bg-black/40 w-full border-b border-white/20">
             <div className="flex items-center">
               <BurgerButton show={show} handle={this.toogle} />
               <a

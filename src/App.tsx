@@ -2,11 +2,21 @@ import React from "react";
 import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
 import Navbar from "./components/Navbar";
+import { UploadSvg } from "./components/Svg";
 
-class App extends React.Component {
+class App extends React.Component<
+  {},
+  {
+    field: {
+      video: string;
+      option: number;
+    };
+    show: boolean;
+  }
+> {
   state = {
     field: {
-      video: null,
+      video: "",
       option: 30,
     },
     show: false,
@@ -15,7 +25,7 @@ class App extends React.Component {
   render = (): React.ReactNode => {
     const { field, show } = this.state;
     return (
-      <div className="h-screen bg-bg text-white filter brightness-80 relative">
+      <div className="bg-black/20 h-screen bg-bg text-white filter brightness-80 relative">
         <Navbar
           show={show}
           handle={(show: boolean) => this.setState({ show })}
@@ -25,76 +35,96 @@ class App extends React.Component {
           show={show}
           handle={(show: boolean) => this.setState({ show })}
         />
-        <div className={`h-full w-full grid place-items-center`}>
-          <div className="bg-white/30 backdrop-blur-md">
-            <div className="flex items-center justify-center w-full">
+        <div className="h-full w-full grid place-items-center font-Quote ">
+          <div className="backdrop-blur-xs bg-black/40 w-[60%] h-[50%] rounded-lg border border-white/20 drop-shadow-2xl flex flex-col">
+            <div className="flex-1 flex items-center justify-center text-white hover:bg-white/10 transition duration-300">
               <label
-                htmlFor="dropzone-file"
-                className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600"
+                htmlFor="file-input"
+                className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer"
               >
-                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                  <svg
-                    className="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 20 16"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"
-                    />
-                  </svg>
-                  <p className="mb-2 text-sm text-gray-500 dark:text-gray-400">
-                    <span className="font-semibold">Click to upload</span> or
-                    drag and drop
-                  </p>
-                  <p className="text-xs text-gray-500 dark:text-gray-400">
-                    SVG, PNG, JPG or GIF (MAX. 800x400px)
-                  </p>
+                <div className="flex flex-col items-center w-full h-full justify-center pt-5 pb-6">
+                  {field.video ? (
+                    <p className="mb-3 text-4xl tracking-widest">
+                      {field.video.split("/").pop()}
+                    </p>
+                  ) : (
+                    <>
+                      <UploadSvg className="w-[50px] fill-none m-5" />
+                      <p className="mb-3 text-4xl tracking-widest">
+                        Click to upload
+                      </p>
+                      <p className="text-lg tracking-widest">
+                        AVI, MP4, MPG, WEBM, MKV, GIFV, WMV
+                      </p>
+                    </>
+                  )}
                 </div>
-                <input id="dropzone-file" type="file" className="hidden" />
+                <input
+                  id="file-input"
+                  type="file"
+                  name="video"
+                  accept="video/*"
+                  onChange={(e: any | null) =>
+                    this.setState({
+                      field: { ...field, video: e.target.files[0].path },
+                    })
+                  }
+                  className="hidden"
+                />
               </label>
             </div>
 
-            <select
-              onChange={() => (e: any | null) =>
-                this.setState({ field: { ...field, option: e.target.value } })}
-              className="text-black px-1 py-2 rounded-lg text-center outline-none bg-transparent"
-            >
-              <option selected disabled>
-                Frame Per Second
-              </option>
-              {[15, 30, 60, 120].map((e) => {
-                return (
-                  <option value={e} key={e}>
-                    {e} fps
-                  </option>
-                );
-              })}
-            </select>
-            <input
-              type="file"
-              name="video"
-              accept="video/*"
-              onChange={(e: any | null) =>
-                this.setState({
-                  field: { ...field, video: e.target.files[0].path },
-                })
-              }
-            />
-
-            {field.video && (
+            <div className="flex w-full">
+              <select
+                onChange={() => (e: any | null) =>
+                  this.setState({
+                    field: { ...field, option: e.target.value },
+                  })}
+                className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
+              >
+                <option selected disabled>
+                  Frame Per Second
+                </option>
+                {[15, 30, 60, 120].map((e) => {
+                  return (
+                    <option value={e} key={e}>
+                      {e} fps
+                    </option>
+                  );
+                })}
+              </select>
+              <select className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
+                <option selected disabled>
+                  Quality Image
+                </option>
+                {["SD", "HD"].map((e) => {
+                  return (
+                    <option value={e} key={e}>
+                      {e}
+                    </option>
+                  );
+                })}
+              </select>{" "}
+              <select className="px-3 py-6 rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
+                <option selected disabled>
+                  Frame Per Second
+                </option>
+                {[15, 30, 60, 120].map((e) => {
+                  return (
+                    <option value={e} key={e}>
+                      {e} fps
+                    </option>
+                  );
+                })}
+              </select>
               <button
+                className="disabled:hover:bg-red-300/50 hover:bg-sky-400/50 flex-1 text-2xl tracking-widest transition duration-300"
+                disabled={field.video ? false : true}
                 onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
-                // onClick={() => window.ipcRenderer.invoke("quetion-profile")}
               >
                 Write !
               </button>
-            )}
+            </div>
           </div>
         </div>
       </div>

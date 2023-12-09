@@ -64,7 +64,7 @@ class Profile extends React.Component<
           />
         )}
         {profile && (
-          <div className="flex flex-col px-2 font-Quote items-center w-full h-full relative">
+          <div className="flex flex-col px-2 font-Quote items-center w-full h-full relative border-r border-white/20">
             <h1 className="text-5xl">My Profile</h1>
             <img
               src={profile["avatar_url"]}
