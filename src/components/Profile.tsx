@@ -51,6 +51,7 @@ class Profile extends React.Component<
 
   render = (): React.ReactNode => {
     const { profile, loading, input } = this.state;
+    console.log(profile);
     return (
       <>
         {loading && <Loading />}
@@ -63,10 +64,11 @@ class Profile extends React.Component<
           />
         )}
         {profile && (
-          <div className="flex flex-col font-Quote items-center w-full h-full relative">
-            <h1 className="text-3xl py-2 tracking-widest">My Profile</h1>
+          <div className="flex flex-col px-2 font-Quote items-center w-full h-full relative">
+            <h1 className="text-5xl">My Profile</h1>
             <img
               src={profile["avatar_url"]}
+              alt="kosong"
               className="rounded-full w-[50%] opacity-80 border border-white/80"
             />
             <div className="flex items-center pt-4">
@@ -86,7 +88,7 @@ class Profile extends React.Component<
             <p className="text-lg  font-light text-white/90">
               {profile["bio"]}
             </p>
-            <div className="grid grid-cols-3 w-full place-items-center p-2 text-xl">
+            <div className="grid grid-cols-3 w-[95%] place-items-center p-1 text-xl border-t border-white">
               <div className="flex flex-col items-center">
                 <h1>Following</h1>
                 <p>{profile["following"]}</p>

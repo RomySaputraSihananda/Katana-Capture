@@ -33,7 +33,7 @@ class SideBar extends React.Component<
         onClick={this.toogle}
       >
         <div
-          className={`h-full w-[40%] backdrop-blur-md bg-black/60 relative ${
+          className={`h-full w-[40%] backdrop-blur-md bg-black/80 relative ${
             show
               ? "transform translate-x-0 transition"
               : "transform -translate-x-full transition"
