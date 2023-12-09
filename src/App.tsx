@@ -80,26 +80,26 @@ class App extends React.Component<
                   this.setState({
                     field: { ...field, option: e.target.value },
                   })}
-                className="block bg-transparent appearance-none px-3 py-6 text-xl rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
+                className="block appearance-none px-3 py-6 text-xl rounded-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
               >
-                <option selected disabled>
+                <option selected disabled className="bg-black text-white">
                   Frame Per Second
                 </option>
                 {[15, 30, 60, 120].map((e) => {
                   return (
-                    <option value={e} key={e}>
+                    <option value={e} key={e} className="bg-black text-white">
                       {e} fps
                     </option>
                   );
                 })}
               </select>
-              <select className="px-3 py-6 rounded-lg text-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300">
-                <option selected disabled>
+              <select className="px-3 py-6 rounded-lg text-lg appearance-none bg-transparent text-center outline-none hover:bg-white/10 transition duration-300">
+                <option selected disabled className="bg-black text-white">
                   Quality Image
                 </option>
                 {["SD", "HD"].map((e) => {
                   return (
-                    <option value={e} key={e}>
+                    <option value={e} key={e} className="bg-black text-white">
                       {e}
                     </option>
                   );
