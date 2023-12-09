@@ -51,7 +51,7 @@ class Profile extends React.Component<
 
   render = (): React.ReactNode => {
     const { profile, loading, input } = this.state;
-    console.log(profile);
+
     return (
       <>
         {loading && <Loading />}

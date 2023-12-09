@@ -30,7 +30,7 @@ class Navbar extends React.Component<
 
   render(): React.ReactNode {
     const { data, show } = this.state;
-    console.log(data);
+
     return (
       <>
         {data && (
