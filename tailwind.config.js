@@ -17,6 +17,7 @@ module.exports = {
         Spartan: "LeagueSpartan-Bold",
         Fira: "Fira",
         Salt: "Salt",
+        Kashima: "Kashima",
         Quote: "Quote",
       },
     },

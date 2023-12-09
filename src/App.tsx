@@ -33,9 +33,13 @@ class App extends React.Component {
                 this.setState({ field: { ...field, option: e.target.value } })}
               className="text-black"
             >
-              <option value={15}>15</option>
-              <option value={30}>30</option>
-              <option value={60}>60</option>
+              {[15, 30, 60, 120].map((e) => {
+                return (
+                  <option value={e} key={e}>
+                    {e}
+                  </option>
+                );
+              })}
             </select>
             <input
               type="file"

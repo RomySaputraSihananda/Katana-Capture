@@ -35,9 +35,19 @@ class Navbar extends React.Component<
       <>
         {data && (
           <nav className="absolute top-0 flex items-center justify-between backdrop-blur-xs bg-black/40 w-full">
-            <BurgerButton show={show} handle={this.toogle} />
-            <h1 className="text-2xl mx-10 tracking-wider font-Quote">
-              Hello, {data["userInfo"]["username"]}@{data["hostname"]} 👋
+            <div className="flex items-center">
+              <BurgerButton show={show} handle={this.toogle} />
+              <a
+                href="https://github.com/romysaputrasihananda/Katana-Capture"
+                target="blank"
+              >
+                <h1 className="ml-4 text-5xl font-Kashima tracking-widest text-[#fff]">
+                  Katana Capture
+                </h1>
+              </a>
+            </div>
+            <h1 className="text-3xl mx-10 tracking-wider font-Quote">
+              Hello, {data["userInfo"]["username"]}@{data["hostname"]}
             </h1>
           </nav>
         )}
