@@ -46,7 +46,7 @@ class Navbar extends React.Component<
                 </h1>
               </a>
             </div>
-            <h1 className="text-2xl mx-10 tracking-wider font-Spartan">
+            <h1 className="text-3xl mx-10 tracking-wider font-Quote font-semibold">
               Hello, {data["userInfo"]["username"]}@{data["hostname"]}
             </h1>
           </nav>

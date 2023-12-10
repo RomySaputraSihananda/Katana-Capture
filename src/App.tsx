@@ -14,6 +14,7 @@ class App extends React.Component<
     };
     show: boolean;
     loading: boolean;
+    drag: boolean;
   }
 > {
   state = {
@@ -23,6 +24,7 @@ class App extends React.Component<
     },
     show: false,
     loading: false,
+    drag: false,
   };
 
   handleConvert = async () => {
@@ -38,7 +40,7 @@ class App extends React.Component<
   };
 
   render = (): React.ReactNode => {
-    const { field, show, loading } = this.state;
+    const { field, show, loading, drag } = this.state;
 
     return (
       <div className="bg-black/20 h-screen bg-bg text-white filter brightness-80 relative">
@@ -54,7 +56,11 @@ class App extends React.Component<
         {loading && <Loading />}
         <div className="h-full w-full grid place-items-center font-Quote ">
           <div className="backdrop-blur-xs bg-black/40 w-[60%] h-[50%] rounded-lg border border-white/20 drop-shadow-2xl flex flex-col">
-            <div className="flex-1 flex items-center justify-center text-white hover:bg-white/10 transition duration-300">
+            <div
+              className={`${
+                drag && "bg-white/10"
+              } flex-1 flex items-center justify-center text-white hover:bg-white/10 transition duration-300`}
+            >
               <label
                 htmlFor="file-input"
                 className="flex flex-col items-center justify-center w-full h-full rounded-lg cursor-pointer"
@@ -65,9 +71,11 @@ class App extends React.Component<
                     this.setState({
                       field: { ...field, video: e.dataTransfer.files[0].path },
                     });
+                    this.setState({ drag: false });
                   }}
                   onDragOver={(e: any | null) => {
                     e.preventDefault();
+                    this.setState({ drag: true });
                   }}
                   className="flex flex-col items-center w-full h-full justify-center pt-5 pb-6"
                 >
@@ -121,9 +129,9 @@ class App extends React.Component<
                   );
                 })}
               </select>
-              <select className="px-3 py-6 rounded-lg text-lg appearance-none bg-transparent text-center outline-none hover:bg-white/10 transition duration-300">
+              <select className="px-3 py-6 rounded-lg text-xl appearance-none bg-transparent text-center outline-none hover:bg-white/10 transition duration-300">
                 <option selected disabled className="bg-black text-white">
-                  Quality Image
+                  Image Quality
                 </option>
                 {["SD", "HD"].map((e) => {
                   return (
@@ -135,7 +143,7 @@ class App extends React.Component<
               </select>
               <select
                 disabled
-                className="px-3 py-6 rounded-lg text-lg text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
+                className="px-3 py-6 rounded-lg text-xl text-center outline-none bg-transparent hover:bg-white/10 transition duration-300"
               >
                 <option selected disabled>
                   Next Feature ?
