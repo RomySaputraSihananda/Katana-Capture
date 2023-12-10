@@ -46,7 +46,7 @@ function createWindow() {
     win.loadFile(path.join(process.env.DIST, "index.html"));
   }
 
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 }
 
 ipcMain.handle("gasConvert", async (e, field) => {
