@@ -41,7 +41,7 @@ class Profile extends React.Component<
   }
 
   componentDidUpdate(
-    prevProps: Readonly<{}>,
+    _prevProps: Readonly<{}>,
     prevState: Readonly<{
       username: string;
     }>

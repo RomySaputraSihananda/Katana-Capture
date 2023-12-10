@@ -4,21 +4,21 @@
 
 @font-face {
   font-family: "LeagueSpartan-Bold";
-  src: url("./fonts/LeagueSpartan-Bold.otf");
+  src: url("../public/fonts/LeagueSpartan-Bold.otf");
 }
 @font-face {
   font-family: "Fira";
-  src: url("./fonts/FiraCode.otf");
+  src: url("../public/fonts/FiraCode.otf");
 }
 @font-face {
   font-family: "Salt";
-  src: url("./fonts/Salt.otf");
+  src: url("../public/fonts/Salt.otf");
 }
 @font-face {
   font-family: "Quote";
-  src: url("./fonts/Quote.otf");
+  src: url("../public/fonts/Quote.otf");
 }
 @font-face {
   font-family: "Kashima";
-  src: url("./fonts/Kashima.otf");
+  src: url("../public/fonts/Kashima.otf");
 }

@@ -49,7 +49,7 @@ function createWindow() {
   // win.webContents.openDevTools();
 }
 
-ipcMain.handle("gasConvert", async (e, field) => {
+ipcMain.handle("gasConvert", async (_e, field) => {
   const name: string | undefined = /\/([^/]+)\.mp4$/.exec(field.video)?.pop();
 
   const outputDir = await dialog
