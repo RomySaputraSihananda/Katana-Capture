@@ -28,7 +28,13 @@ class App extends React.Component<
   handleConvert = async () => {
     this.setState({ loading: true });
     await window.ipcRenderer.invoke("gasConvert", this.state.field);
-    this.setState({ loading: false });
+    this.setState({
+      field: {
+        video: "",
+        option: 30,
+      },
+      loading: false,
+    });
   };
 
   render = (): React.ReactNode => {
