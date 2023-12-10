@@ -3,6 +3,7 @@ import Snowfall from "react-snowfall";
 import SideBar from "./components/SideBar";
 import Navbar from "./components/Navbar";
 import { UploadSvg } from "./components/Svg";
+import Loading from "./components/Loading";
 
 class App extends React.Component<
   {},
@@ -12,6 +13,7 @@ class App extends React.Component<
       option: number;
     };
     show: boolean;
+    loading: boolean;
   }
 > {
   state = {
@@ -20,10 +22,17 @@ class App extends React.Component<
       option: 30,
     },
     show: false,
+    loading: false,
+  };
+
+  handleConvert = async () => {
+    this.setState({ loading: true });
+    await window.ipcRenderer.invoke("gasConvert", this.state.field);
+    this.setState({ loading: false });
   };
 
   render = (): React.ReactNode => {
-    const { field, show } = this.state;
+    const { field, show, loading } = this.state;
 
     return (
       <div className="bg-black/20 h-screen bg-bg text-white filter brightness-80 relative">
@@ -36,6 +45,7 @@ class App extends React.Component<
           show={show}
           handle={(show: boolean) => this.setState({ show })}
         />
+        {loading && <Loading />}
         <div className="h-full w-full grid place-items-center font-Quote ">
           <div className="backdrop-blur-xs bg-black/40 w-[60%] h-[50%] rounded-lg border border-white/20 drop-shadow-2xl flex flex-col">
             <div className="flex-1 flex items-center justify-center text-white hover:bg-white/10 transition duration-300">
@@ -128,7 +138,7 @@ class App extends React.Component<
               <button
                 className="disabled:hover:bg-red-600/10 hover:bg-sky-600/10 rounded-lg flex-1 text-2xl tracking-widest transition duration-300"
                 disabled={field.video ? false : true}
-                onClick={() => window.ipcRenderer.invoke("gasConvert", field)}
+                onClick={this.handleConvert}
               >
                 Convert !
               </button>

@@ -64,16 +64,18 @@ ipcMain.handle("gasConvert", async (e, field) => {
   if (!outputDir)
     return alert("warning", "Select the directory for the image output");
 
-  ffmpeg(field.video)
-    .videoFilters(`fps=${field.option}`)
-    .outputOptions(["-f", "image2"])
-    .on("end", () => {
-      alert("info", "Video frames extracted successfully");
-    })
-    .on("error", () => {
-      alert("error", "Error extracting video");
-    })
-    .save(path.join(outputDir, `${name}_%05d.png`));
+  await new Promise((res, rej) => {
+    ffmpeg(field.video)
+      .videoFilters(`fps=${field.option}`)
+      .outputOptions(["-f", "image2"])
+      .on("end", () => {
+        res(alert("info", "Video frames extracted successfully"));
+      })
+      .on("error", () => {
+        rej(alert("error", "Error extracting video"));
+      })
+      .save(path.join(outputDir, `${name}_%05d.png`));
+  });
 });
 
 const alert = (
